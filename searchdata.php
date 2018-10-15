@@ -1,16 +1,10 @@
 <?php
 
 require_once("db.php");
-
-if (isset($_GET["cari"])) {
-    $value = $_GET["cari"];
+$value = $_GET["cari"];
 
 $sql = "SELECT * FROM data where nim like '%$value%'";
-}else {
-$sql = "SELECT * FROM data";
-}
-$result = mysqli_query($conn, $sql);
-
+$result = mysqli_query($conn,$sql)
 ?>
 
 <!DOCTYPE html>
@@ -23,19 +17,14 @@ $result = mysqli_query($conn, $sql);
 
 <body>
     <table>
-       <td>
-            <form action="lihatdata.php" method = "get">
-            <input type="text" name="cari" placeholder="Cari Nim mahasiswa">
-            <input type="submit">
-        </form>
-    </td>
         <tr>
             <th>Nama</th>
             <th>Nim</th>
             <th>Aksi</th>
         </tr>
+
         <?php
-        
+        $result = mysqli_query($conn, $sql);
         $row = mysqli_num_rows($result);
         if(mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -46,16 +35,31 @@ $result = mysqli_query($conn, $sql);
                     <td> <a href="delete.php?id=<?php echo $row['id']?>">delete</a>
 
                 </tr>
-                <?php
+                		<?php
 
-            }
-        }else {
-            echo "0 result";
-        }
-        mysqli_close($conn);
+			}
+
+
+
+		}else {
+
+
+
+			echo "0 Result";
+
+
+		}
+
+
+		mysqli_close($conn);
+
+
         ?>
 
-    </table>
+</table>
+
 </body>
+
 </html>
-<h3><a href="input.php"> ISI INPUT DATA MAHASISWA</a></h3>
+        
+  
