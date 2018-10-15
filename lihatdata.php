@@ -17,6 +17,7 @@ require_once("db.php");
        <td>
             <form action="searchdata.php" method = "get">
             <input type="text" name="cari" placeholder="Cari Nim mahasiswa">
+                <input type="submit" name="cari">
         </form>
     </td>
         <tr>
